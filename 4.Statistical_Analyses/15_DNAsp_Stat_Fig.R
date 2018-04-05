@@ -50,8 +50,8 @@ stat3 =  read.table(Name_File3, header = TRUE)
 colnames(stat3)[1] <- "Gene"
 
 #################
-maxPiWild = quantile(stat2$Pi, 1 - 1e-5,na.rm=TRUE)[[1]]
-maxPiCrop = quantile(stat3$Pi, 1 - 1e-5,na.rm=TRUE)[[1]]
+maxPiCrop = quantile(stat2$Pi, 1 - 1e-5,na.rm=TRUE)[[1]]
+maxPiWild = quantile(stat3$Pi, 1 - 1e-5,na.rm=TRUE)[[1]]
 
 which((stat2$Pi) >= maxPiCrop)
 which((stat3$Pi) >= maxPiWild)
