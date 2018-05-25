@@ -298,7 +298,17 @@ results.down = down.go[down.go$over<go.cutoff, c(1,2,4,5,6,7)]
 dim(results.down); head(results.down)
 length(up[up==1])  #A 196 188
 length(down[down==1]) #B 374 370
+########
+##### LIST OF A and B Genes !!!
+########
+OUTGO.A<-paste(title,"_Pi_A_CROP_list.txt",sep="")
+write.table(names(up[up==1]), OUTGO.A, row.names = FALSE, col.names = "GENE")
+OUTGO.B<-paste(title,"_Pi_B_CROP_list.txt",sep="")
+write.table(names(down[down==1]), OUTGO.B, row.names = FALSE, col.names = "GENE")
 
+########
+##### LIST OF GOTerms !!!
+########
 OUTGO.UP<-paste(title,"_Pi_CROP_GO.filt.wall.A.summary.txt",sep="")
 write.table(results.up, OUTGO.UP, row.names = FALSE, col.names = TRUE)
 OUTGO.DOWN<-paste(title,"_Pi_CROP_GO.filt.wall.B.summary.txt",sep="")
