@@ -21,9 +21,11 @@ This second guideline is giving details on the statistical analyses:
 *WARNING:* Use the guidline **_B_Statistical_Analyses.md_** that is the detailed pipeline script.
   
 4.  Statistical analyses  
+  
+a. Reference annotation    
+b. Deseq analyses  
 
-
-
+5. Ortholog analyses  
 
  
  
