@@ -1,7 +1,15 @@
-###############################################
-### STARTING by giving the path to the data ###
-###############################################
+---
+title: "Test of GO enrichment in Orthologs"
+author: "Stéphanie Arnoux"
+date: "5/28/2018"
+output: html_document
+---
 
+###########################
+### LOADING the library ###
+###########################
+
+```r
 library("zoo")
 library("grDevices")
 library(fields)
@@ -11,8 +19,6 @@ library(missMethyl)
 library(edgeR)
 library("DESeq2")
 library("Rcpp")
-# source("http://bioconductor.org/biocLite.R")
-# biocLite("DESeq2")
 library("vsn")
 library("gplots")
 library("airway")
@@ -30,38 +36,33 @@ library(Biostrings)
 
 ```
 
-#####################
-### LOAD THE DATA ###
-#####################
+########################
+### LOADING THE DATA ###
+########################
 
 ```
 rm(list=ls())
 ## Give the working folder
-PATH_STAT = "/Users/stephaniearnoux/Documents/Solution/vcf/DNAsp/"
-REF = "~/Documents/Solution/Transcriptomics/Coverage/ITAG3.2_PerGene/ITAG3.2_CDS.fasta"
-GO_SLIM = "~/Documents/Solution/Transcriptomics/Coverage/ITAG3.2_PerGene/ITAG3.2_InterproSc_GO_pfam.txt" #SMART
+PATH_STAT = "/path/to/DNAsp/"
+REF = "/path/to/ref/reference1.fa"
+GO_SLIM = "/path/to/ref/reference1_InterproSc_GO_pfam.txt" #PFAM annotation
 
-ChrLOC=read.table("/Users/stephaniearnoux/Documents/Solution/references/ITAG3.2_gene_Loc.tab")
+ChrLOC=read.table("/path/to/ref/reference1_gene_Loc.tab")
 setwd(PATH_STAT)
-## Give sample details 
 
 Species= "Orthologs"
 title = "Orthologs_"
 
-## Settle the file names
-Name_File2 = "LA_DNAsp_Crop.recode.VCF.out" 
-Name_File3 = "LA_DNAsp_Per.recode.VCF.out"
-
-################### NOW DONT TOUCH BUT RUN IT THROUGH
-## Reads the files
-ListeTotalOrtho = read.table("/Users/stephaniearnoux/Documents/Solution/references/Ortholog_Analizes/2018_Tot_ortho.proteinortho")
+## Get the otholog files
+ListeTotalOrtho = read.table("/path/to/folder_with_Orthologs/Common_Ortho.proteinortho")
 ListeSolycOrtho = ListeTotalOrtho[2]
 colnames(ListeSolycOrtho) <- "GENE"
 
-Wild_Crop_Down = "~/Documents/Solution/Orthologs/List_Ortho_DOWN_TOT_Solyc.txt"
-Wild_Crop_Up = "~/Documents/Solution/Orthologs/List_Ortho_Up_TOT_Solyc.txt"
-Wild_Crop_A = "~/Documents/Solution/Orthologs/List_Ortho_A_TOT_Solyc.txt"
-Wild_Crop_B = "~/Documents/Solution/Orthologs/List_Ortho_B_TOT_Solyc.txt"
+## In this example we used the orthologs with their gene name 'Solyc' that was the gene name of our reference. They have been made with the script 18_OrtholoAnalyses.R
+Wild_Crop_Down = "/path/to/Orthologs/List_Ortho_DOWN_TOT_Solyc.txt"
+Wild_Crop_Up = "/path/to/Orthologs/List_Ortho_Up_TOT_Solyc.txt"
+Wild_Crop_A = "/path/to/Orthologs/List_Ortho_A_TOT_Solyc.txt"
+Wild_Crop_B = "/path/to/Orthologs/List_Ortho_B_TOT_Solyc.txt"
 
 CropUp_reg = read.table(Wild_Crop_Up, header = TRUE)
 colnames(CropUp_reg) <- "GENE"
@@ -89,7 +90,7 @@ itagLength <- nchar(itagSeqs) #length of each ITAG
 names(itagLength) <- names(itagSeqs)
 
 # head(names(itagLength))
-names(itagLength) <- substr(names(itagLength),1,18) # not needed if you use seqinR
+names(itagLength) <- substr(names(itagLength),1,18) # CHECK THE LENGTH OF YOUR REFERENCE GENE NAME
 # head(d$ITAG)
 d$ITAG[!d$ITAG %in% names(itagLength)] #Looks OK
 
@@ -108,7 +109,7 @@ head(d$ITAG)
 
 # The number from the next command should match the number from the previous command.
 
-sum(substr(GOinterpro_annex_slim$ITAG,1,20) %in% substr(d$ITAG,1,20)) # 8222
+sum(substr(GOinterpro_annex_slim$ITAG,1,20) %in% substr(d$ITAG,1,20)) # 8222 This is the gene space number.
 colnames(d)
 
 ##### WE CREATE AN EVALGO FUNCTION THAT PERFORM THE ENRICHMENT TEST #####
@@ -208,13 +209,13 @@ length(BB[BB==1])  #17 #ALL:137
 ########
 #### SUM1MARY GO TERMS !!!
 ########
-OUTGO.UP<-paste("/Users/stephaniearnoux/Documents/Solution/Orthologs/",title,"_CROP_GO.filt.wall.UP.TOT.summary.txt",sep="")
+OUTGO.UP<-paste("/path/to/Orthologs/",title,"_CROP_GO.filt.wall.UP.TOT.summary.txt",sep="")
 write.table(results.up, OUTGO.UP, row.names = FALSE, col.names = TRUE)
-OUTGO.DOWN<-paste("/Users/stephaniearnoux/Documents/Solution/Orthologs/",title,"_CROP_GO.filt.wall.DOWN.TOT.summary.txt",sep="")
+OUTGO.DOWN<-paste("/path/to/Orthologs/",title,"_CROP_GO.filt.wall.DOWN.TOT.summary.txt",sep="")
 write.table(results.down, OUTGO.DOWN, row.names = FALSE, col.names = TRUE)
-OUTGO.A<-paste("/Users/stephaniearnoux/Documents/Solution/Orthologs/",title,"_CROP_GO.filt.wall.A.TOT.summary.txt",sep="")
+OUTGO.A<-paste("/path/to/Orthologs/",title,"_CROP_GO.filt.wall.A.TOT.summary.txt",sep="")
 write.table(results.AA, OUTGO.A, row.names = FALSE, col.names = TRUE)
-OUTGO.B<-paste("/Users/stephaniearnoux/Documents/Solution/Orthologs/",title,"_CROP_GO.filt.wall.B.TOT.summary.txt",sep="")
+OUTGO.B<-paste("/path/to/Orthologs/",title,"_CROP_GO.filt.wall.B.TOT.summary.txt",sep="")
 write.table(results.BB, OUTGO.B, row.names = FALSE, col.names = TRUE)
 
-
+```
