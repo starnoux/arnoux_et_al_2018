@@ -134,7 +134,13 @@ The software used is proteinortho5.pl
   
 Once you obtain the main file, try to make sub-files containing only orthologs common to the three species and for which there is only one ortholog per gene.  
 ```bash  
-awk '$1 ==3 && $2 == 3 {print $4, $5, $6}' myproject.proteinortho > Common_Ortho.proteinortho  
-```ls  
+awk '$1 ==3 && $2 == 3 {print $4, $5, $6}' myproject.proteinortho > Common_Ortho.proteinortho
+```
+  
+#### -> Ortholog Analyses of DEGs and Shifted Genes  
+  
+In the following script, you will make an Ortholog analyses using the DEGs and Shifted Genes results you produced previously. **_18_OrthoAnalyses.R_**
+  
+#### -> Gene ontology enrichement analysis on orthologs for DEGs and Shifted Genes  
+  
 
-#### -> 
