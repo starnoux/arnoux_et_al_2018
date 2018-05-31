@@ -143,4 +143,5 @@ In the following script, you will make an Ortholog analyses using the DEGs and S
   
 #### -> Gene ontology enrichement analysis on orthologs for DEGs and Shifted Genes  
   
+In this script, we finalise our analyses by performing GO enrichement analyses on the DEGs and Shifted Genes found in the previous scripts. **_19_GO_Enrichment_Orthologs.R_**  
 
