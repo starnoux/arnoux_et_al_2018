@@ -5,30 +5,23 @@ date: "7/27/2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+##################################################
+### LOADING Results from proteinortho software ###
+##################################################
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
+```r
 rm(list=ls())
 
-
-PATH_to_LIST = "/Users/stephaniearnoux/Documents/Solution/Orthologs/"
+PATH_to_LIST = "/path/to/folder_with_Orthologs/"
 setwd(PATH_to_LIST)
 
-ListeTotalOrtho = read.table("/Users/stephaniearnoux/Documents/Solution/references/Ortholog_Analizes/2018_Tot_ortho.proteinortho")
+ListeTotalOrtho = read.table("/path/to/folder_with_Orthologs/Common_Ortho.proteinortho")
 
-#############################################
-#################### DEG #################### 
-#############################################
-PATH_to_Cov = "/Users/stephaniearnoux/Documents/Solution/Transcriptomics/Coverage/"
-####### GET THE DATE
+#####################################################
+#################### DEG ANALYSES ################### 
+#####################################################
+PATH_to_Cov = "/path/to/Deseq_Folder/"
+####### GET THE DATA -> Change Tomato, eggplant and pepper with your species 1, 2 and 3
 Tom = "ITAG3.2_PerGene/DESeq_FilteredPara_vbeta/Lyc_Pim/Pop_Lyc._Pim.Down.txt"
 Egg = "SMEL_PerGene/DESeq_FilteredPara_vbeta/mel_ins/Pop_ins_melUp.txt"
 Pep = "CaZl1_PerGene/DESeq_FilteredPara_vbeta/Crop_Wild_dadi/Pop_Crop_WildDown.txt"
@@ -92,15 +85,15 @@ write.table(TOT,file = "List_Ortho_DOWN_TOT_Solyc.txt",row.names = FALSE, col.na
 ###############################################
 #################### A & B #################### 
 ###############################################
-PATH_to_Pi = "/Users/stephaniearnoux/Documents/Solution/"
+PATH_to_Pi = "/path/to/DNAsp/"
 ####### GET THE DATE
-TomA = "vcf/DNAsp/LA_ALL_DNAsp_Pi_A_CROP_list.txt"
-EggA = "vcf/DNAsp/MM_DNAsp_Pi_A_CROP_list.txt"
-PepA = "vcf/DNAsp/PM_DNAsp_Pi_A_CROP_list.txt"
-TomB = "vcf/DNAsp/LA_ALL_DNAsp_Pi_B_CROP_list.txt"
-EggB = "vcf/DNAsp/MM_DNAsp_Pi_B_CROP_list.txt"
-PepB = "vcf/DNAsp/PM_DNAsp_Pi_B_CROP_list.txt"
-#PepDV = "pepper/Ortho_Pop_Crop_WildBOTH_list.df"
+TomA = "LA_ALL_DNAsp_Pi_A_CROP_list.txt"
+EggA = "MM_DNAsp_Pi_A_CROP_list.txt"
+PepA = "PM_DNAsp_Pi_A_CROP_list.txt"
+TomB = "LA_ALL_DNAsp_Pi_B_CROP_list.txt"
+EggB = "MM_DNAsp_Pi_B_CROP_list.txt"
+PepB = "PM_DNAsp_Pi_B_CROP_list.txt"
+
 Tom.A = read.table(paste(PATH_to_Pi,TomA, sep=""), header = TRUE)
 Egg.A = read.table(paste(PATH_to_Pi,EggA, sep=""), header = TRUE)
 Pep.A = read.table(paste(PATH_to_Pi,PepA, sep=""), header = TRUE)
