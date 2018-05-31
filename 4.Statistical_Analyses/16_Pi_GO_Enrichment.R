@@ -298,6 +298,7 @@ results.down = down.go[down.go$over<go.cutoff, c(1,2,4,5,6,7)]
 dim(results.down); head(results.down)
 length(up[up==1])  #A 196 188
 length(down[down==1]) #B 374 370
+
 ########
 ##### LIST OF A and B Genes !!!
 ########
@@ -305,6 +306,32 @@ OUTGO.A<-paste(title,"_Pi_A_CROP_list.txt",sep="")
 write.table(names(up[up==1]), OUTGO.A, row.names = FALSE, col.names = "GENE")
 OUTGO.B<-paste(title,"_Pi_B_CROP_list.txt",sep="")
 write.table(names(down[down==1]), OUTGO.B, row.names = FALSE, col.names = "GENE")
+
+########
+#### FISHER TEST ON DISTRIBUTION OF SHIFTED GENES A AND B ON THE CHROMOSOMES
+########
+Up.table <- data.frame(cbind(names(up),as.character(up),as.numeric(as.character(substr(names(up),7,8)))))
+colnames(Up.table) <- c("gene","A","chr")
+Down.table <- data.frame(cbind(names(down),as.character(down),as.numeric(as.character(substr(names(down),7,8)))))
+colnames(Down.table) <- c("gene","B","chr")
+
+PiGA=NULL
+for(i in chrlist){
+  matriXUp = matrix(c(nrow(Up.table[Up.table$chr==i&Up.table$A==1,]),nrow(Up.table[Up.table$chr==i,]), nrow(Up.table[Up.table$chr!=0&Up.table$A==1,]),nrow(Up.table[Up.table$chr!=0,])), ncol=2)
+  res = c(matriXUp[,1],fisher.test(matriXUp)$p.value)
+  PiGA= cbind(PiGA,res)
+}
+
+PiGB=NULL
+for(i in chrlist){
+  matriXDown = matrix(c(nrow(Down.table[Down.table$chr==i&Down.table$B==1,]),nrow(Down.table[Down.table$chr==i,]), nrow(Down.table[Down.table$chr!=0&Down.table$B==1,]),nrow(Down.table[Down.table$chr!=0,])), ncol=2)
+  res = c(matriXDown[,1],fisher.test(matriXDown)$p.value)
+  PiGB= cbind(PiGB,res)
+}
+PiGA
+matriXUp[,2]
+PiGB
+matriXDown[,2]
 
 ########
 ##### LIST OF GOTerms !!!
