@@ -81,7 +81,7 @@ Then run **MANUALLY** (read it and follow line per line) the script **_12_idx_fi
 It will help you understand what the script does, and you can check that your files have the same format as expected.  
 At the end of this step modify the created file 'Acc_Loc.txt' to define the family, group or origin location of your accessions.   
 
-#### -> Deseq Analyses  
+#### -> Deseq, Diversity & Demography Analyses  
   
 These analyses will give you information on the genes that are up- and down-regulated. You can run the scripts entirely as far as you fill up the preliminary informations. Just open and check out the instructions of the script **_13_Deseq_Pair_Pop.R_**.    
   
@@ -95,10 +95,10 @@ This script will statistically estimate the level of gene expression differences
     -  Plot of data distribution between the raw data and the rlog transformed data
     - ... *(cf.details in script)*       
   
-#### -> GLM regression models     
+#### -> GLM regression models on DEG, nucleotide diversity and Tajima's D
 In the following script on R, **_14_GLM_regression_models.R_**, we used the DNAsp results and tested the effect of Tajima's D on the expression and the effect of Pi on the expression (we tested in both cases the reciprocal hypothesis).   
   
-#### -> Genome-Wide figures  
+#### -> Genome-Wide figures of nucleotide diversity and Tajima's D
   
 In the following script on R, **_15_DNAsp_Stat_Fig.R_** , we used the statistics per gene that were produced with DNAsp per population of each species. If you use this script, you have to know that we 'smoothed' the data over 50 genes with the 'rollmean' function and therefore that you might change this function parametes.    
 As well, it is pretty important to check the graph/figure limits in order to have the plot in the range of the plot.  
@@ -118,12 +118,23 @@ The Pi shifted genes, were defined as genes that would have a high nucleotid div
 
 In the following script on R, **_16_Pi_GO_Enrichment.R_** , we will statistically test the gene ontology enrichment of our shifted gene groups A and B. A plot will be produced with the abline following the threshold and the coloured dot being the shifted genes.
 
-#### -> Production of PCA plot (on Genetic diversity)   
+#### -> Production of PCA plot on Genetic diversity  
   
-Using the 'SNPRelate' library on R, we produced PCA plots, the script is **_17_PCA.R_**.
+Using the 'SNPRelate' library on R, we produced PCA plots, the script is **_17_PCA.R_**.  
+  
+  
+### 5. Ortholog analyses  
+  
+To make the ortholog analyses possible, you must have the reference CDS fasta files.  
+The software used is proteinortho5.pl  
+```bash  
+/path/to/proteinortho5.pl -p=blastn+ -project=myproject /path/to/reference1.fa /path/to/reference2.fa /path/to/reference3.fa 
+```  
+> ###### *proteinortho v5.11; NCBI BLAST v2.6.0+ *  
+  
+Once you obtain the main file, try to make sub-files containing only orthologs common to the three species and for which there is only one ortholog per gene.  
+```bash  
+awk '$1 ==3 && $2 == 3 {print $4, $5, $6}' myproject.proteinortho > Common_Ortho.proteinortho  
+```ls  
 
- 
-
-
-
-
+#### -> 
