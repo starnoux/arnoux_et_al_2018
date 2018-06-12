@@ -1,6 +1,5 @@
 # This script dissect the vcf file
-# script from J. David. 1/03/2012
-# Adapted to our analyses by S. Arnoux. January 2018
+# Script from Sylvain Glémin (sylvain.glemin@univ-montp2.fr) / C++ version included in the read2snp software 
 # The given threshold value will exclude all heterozygous sites that have less than the threshold value reads over all the individuals. In our case if 'Seuil = 4' then the site must be present in at least 4 alleles of the total number of the population allele number. (Diploid -> total allele over population = individuals \* 2)
 
 use warnings;
