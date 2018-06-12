@@ -13,8 +13,7 @@ from Bio.SeqRecord import SeqRecord
 courriel = "ste.arnoux@gmail.com"
  
 parser=argparse.ArgumentParser(                                                           #creation of a parser which gather the arguments of the program
-    description=""" This program will generate sequences for all the fasta files in sequences with a name like this LD_LL0000.
-    contact: """+courriel+"""\n\n""")
+    description=""" This program will clean the paralogous from the vcf inital. """+courriel+"""\n\n""")
 
 #parser.add_argument("-l",type=str,default="P",                                              help="prefix letter of the LD or LW or LO (default: %(default)s)")
 parser.add_argument("-i",           type=str,       default="/path/to/input/folder/",                         help="input directory (default: %(default)s)!")
