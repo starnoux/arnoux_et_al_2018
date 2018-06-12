@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript
 
 #title : 'Split and Filter the Paralogous sites'
-#author: "script from J. David. 1/03/2012, adapted to our analyses by S. Arnoux"
+#author: " Script from Sylvain Glémin (sylvain.glemin@univ-montp2.fr) / C++ version included in the read2snp software, J. David. 1/03/2012, adapted to our analyses by S. Arnoux"
 #date : "January 2018"
 
 ### DEFINITION OF ARGUMENTS 
