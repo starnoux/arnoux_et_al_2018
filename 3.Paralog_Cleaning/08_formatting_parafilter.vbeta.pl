@@ -1,4 +1,5 @@
 # This file dissect the vcf file
+# Script from Sylvain Glémin (sylvain.glemin@univ-montp2.fr) / C++ version included in the read2snp software 
 # J.David 1/03/2012
 
 use warnings;
