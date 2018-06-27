@@ -78,7 +78,7 @@ sed "/\*/d" filtered_file.recode.vcf > filtered_file.recode.nost.vcf
 ```   
   **b. vcf file dissection**  
 The given threshold value will be excluding all heterozygous sites that have less than the ‘threshold value’ reads over all the individuals. In our case if 'threshold = 4' then the site must be present in at least 4 alleles of the total number of the population allele number. (Diploid -> total allele over population = individuals \* 2)  
-*Script adapted from Jacques David from 
+* Script from Sylvain Glémin (sylvain.glemin@univ-montp2.fr) / C++ version included in the read2snp software 
 [READS2SNP](http://kimura.univ-montp2.fr/PopPhyl/resources/tools/)*.
 ```bash
 perl 05_willy_waller_2006.vbeta.pl /path/to/filtered_file.recode.nost.vcf dissect_file.output.txt 4_or_otherThreshold
@@ -95,7 +95,7 @@ In this step the filtered contigs *'out.list'* from the previous step will be us
 ```
   **e. formatting of the vcf.out file**   
 In this step there is mostly formatting the previous file to make the next step possible.
-*Script from Jacques David.*  
+* Script from Sylvain Glémin (sylvain.glemin@univ-montp2.fr) / C++ version included in the read2snp software [READS2SNP](http://kimura.univ-montp2.fr/PopPhyl/resources/tools/)*.
 ```bash
 perl 08_formatting_parafilter.vbeta.pl /path/to/NewVcf_Filtered.vcf /path/to/NewVcf_Filtered.vcf.out  
 ```
@@ -103,7 +103,7 @@ perl 08_formatting_parafilter.vbeta.pl /path/to/NewVcf_Filtered.vcf /path/to/New
 In this script, we create the files to manage all the filtering in parallele subfiles. This step was used on the server. We used the following paramters for the resampling and the paralogous testing.   
 >err<-0.001 # error threshold <br/>fis<-0.5 # FIS threshold <br/>PREC<-0.001 # optimisation threshold <br/>POLYPARA<-TRUE # Booleen to know if we want the polymorphism details of the paralogous sites <br/>Threshold<-0.01 # p.value threshold for the difference between the model with or without paralogs above which we do not test the paralog polymorphisms  
 
-*Script adapted from Jacques David.*
+* Script from Sylvain Glémin (sylvain.glemin@univ-montp2.fr) / C++ version included in the read2snp software [READS2SNP](http://kimura.univ-montp2.fr/PopPhyl/resources/tools/)*.
 ```bash
 ./09_SplitFilterParalog_vbeta.R -d /path/to/Folder/input/ -i NewVcf_Filtered.vcf.out
 ```
