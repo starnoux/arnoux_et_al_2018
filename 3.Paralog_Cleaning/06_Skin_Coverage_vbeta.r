@@ -1,7 +1,7 @@
 #!/usr/bin/Rscript
 
 #title : 'Skin_Coverage_vbeta'
-#author: "S. Arnoux"
+#author: Script from Sylvain Glémin (sylvain.glemin@univ-montp2.fr) / C++ version included in the read2snp software 
 #date : "January 2018"
 
 
