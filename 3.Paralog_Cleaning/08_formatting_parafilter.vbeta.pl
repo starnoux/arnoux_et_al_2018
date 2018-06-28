@@ -6,7 +6,7 @@ use warnings;
 use strict;
 
 # gives the arguments meaning the vcf file and the out file
-my ($vcf ,$output, $seuil) = @ARGV;
+my ($vcf ,$output) = @ARGV;
 
 if (not defined $vcf) {
   die "Need vcf location, you fool!\n This vcf must be without stars in it.\n E.g. Script.pl /folder/CSFILTER_file.vcf /folder/CSFILTER_file.out";
