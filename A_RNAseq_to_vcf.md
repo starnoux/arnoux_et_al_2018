@@ -109,7 +109,7 @@ In this script, we create the files to manage all the filtering in parallele sub
 ```
 ###### WARNINGS: I had to do manually the merging of the .res files, that happened most probably because of the resources allocated to the server. Just check that the number of lines in your .vcf.out.Merged.out is corresponding to the sum of the .vcf.out.  As this could happen depending on the server you are working on, just be careful and do the mergin steps on R manually and not with the automatized script.    
   **g. Paralogous countig extraction**  
-The pralalogous countig have been statistically tested with the previous steps and the list of paralagous can be now extracted according to the threshold we define (Here we use 0.05 as default but it can be change with the option -thr).  
+The paralogous countig have been statistically tested with the previous steps and the list of paralagous can be now extracted according to the threshold we define (Here we use 0.05 as default but it can be change with the option -thr).  
 ```bash  
 ./10_subVCFfromFilter.vbeta.py -i /path/to/Folder/input/ -vcf NewVcf_Filtered.vcf -list NewVcf_Filtered.vcf.out.Merged.res -new Filtered_liste.tab.txt  
 ```  
