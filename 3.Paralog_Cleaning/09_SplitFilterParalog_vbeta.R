@@ -299,7 +299,7 @@ stopCluster(cl)
 ##############################################################################################################
 ##############################################################################################################
 
-cl<-makeCluster(no_cores)
+#cl<-makeCluster(no_cores)
 
 RESOUT<-paste(FILE,".Merged.res",sep="")
 
@@ -309,7 +309,7 @@ Files2Merge<-list.files(path = Pathdir, pattern = ".out.res$", full.names = TRUE
 
 files <- mixedsort(Files2Merge)
 
-clusterExport(cl, "RESOUT")
+#clusterExport(cl, "RESOUT")
 
 mergeAllRes <- function(x){
   NAMES<-paste(sub(".out.res",".out",x))
@@ -322,6 +322,7 @@ mergeAllRes <- function(x){
   write.table(c_joindre, RESOUT, append = TRUE, col.names = FALSE, row.names = FALSE)
 }
 
-resmer <- parSapply(cl, files, mergeAllRes)
+#resmer <- parSapply(cl, files, mergeAllRes)  
+resmer <- sapply(files, mergeAllRes)  
 
-stopCluster(cl)
+#stopCluster(cl)
