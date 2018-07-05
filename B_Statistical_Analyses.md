@@ -96,8 +96,9 @@ This script will statistically estimate the level of gene expression differences
     - ... *(cf.details in script)*       
   
 #### -> GLM regression models on DEG, nucleotide diversity and Tajima's D
-In the following script on R, **_14_GLM_regression_models.R_**, we used the DNAsp results and tested the effect of Tajima's D on the expression and the effect of Pi on the expression (we tested in both cases the reciprocal hypothesis).   
-  
+In the following script on R, **_14_GLM_regression_models.R_**, we used the DnaSP results and tested the effect of Tajima's D on the expression and the effect of Pi on the expression (we tested in both cases the reciprocal hypothesis).   
+> ###### *DnaSP v6.10.03*   
+
 #### -> Genome-Wide figures of nucleotide diversity and Tajima's D
   
 In the following script on R, **_15_DNAsp_Stat_Fig.R_** , we used the statistics per gene that were produced with DNAsp per population of each species. If you use this script, you have to know that we 'smoothed' the data over 50 genes with the 'rollmean' function and therefore that you might change this function parametes.    
